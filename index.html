@@ -69,7 +69,7 @@
   return [year, month, day].join('-');
 }
     function get_fn(date='') {
-      let db = fetch('https://stark-tundra-91713.herokuapp.com/?date='+date)
+      let db = fetch('https://guarded-falls-03576.herokuapp.com/?date='+date)
         .then(async response => {
           const result = await response.json()
           document.getElementById('tickers').innerHTML = ``;
