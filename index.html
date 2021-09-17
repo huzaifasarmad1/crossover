@@ -69,7 +69,7 @@
   return [year, month, day].join('-');
 }
     function get_fn(date='') {
-      let db = fetch('https://guarded-falls-03576.herokuapp.com/?date='+date)
+      let db = fetch('http://localhost:3000?date='+date)
         .then(async response => {
           const result = await response.json()
           document.getElementById('tickers').innerHTML = ``;
