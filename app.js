@@ -14,11 +14,11 @@ const nodemailer = require('nodemailer');
 var transporter = nodemailer.createTransport({
   service: 'gmail',
   auth: {
-    user: '', //add email from where you want to send the email
-    pass: '' //add pass for that email
+    user: 'mail', //add email from where you want to send the email
+    pass: 'password' //add pass for that email
   }
 });
-mongoose.connect('', { useNewUrlParser: true });
+mongoose.connect('Mongoose connection string here', { useNewUrlParser: true });
 
 app.use(cors())
 app.get('/', (req, res) => {
@@ -76,7 +76,7 @@ const clearAsyncInterval = (intervalIndex) => {
   }
 };
 
-var token='';
+var token='Secret token from api documentation here';
 let func = async () => {
   var iterator = 0;
   // here we need to remove the extra tickers  okay..let me make the list on excel yes you can give me an excel file same as you gave me before
@@ -101,7 +101,7 @@ let d = new Date();
       });
       let latestData = await latestResponse.json();
      if(latestData.detail=='Error: You have run over your monthly bandwidth allocation. Please upgrade at https://api.tiingo.com/pricing to have your limits increased.'){
-        token=''
+        token='Secret token from api documentation here'
         func();
       }
       if (latestData.length > 0) {
@@ -118,12 +118,12 @@ let d = new Date();
           console.log('allData have zero length')
         }
         else {
-          var todaysSUM = 0;
+          var todaysSum = 0;
          for (i = allData.length - 100; i < allData.length; i++) {
-            todaysSUM = todaysSUM + allData[i].close
+            todaysSum = todaysSum + allData[i].close
           }
 
-          let price = todaysSUM / 100;
+          let price = todaysSum / 100;
           if (allData.length == 0) {
             price = 0;
           }
@@ -132,12 +132,12 @@ let d = new Date();
           for (i = allData.length - 2; i < allData.length - 1; i++) {
     yesterdayclose = allData[i].close
     }
-          var yesterdaysSUM = 0;
+          var yesterdaysSum = 0;
           var yesterdayaverage = 0;
           for (i = allData.length - 101; i < allData.length - 1; i++) {
-            yesterdaysSUM = yesterdaysSUM + allData[i].close
+            yesterdaysSum = yesterdaysSum + allData[i].close
           }
-          yesterdayaverage = yesterdaysSUM / 100;
+          yesterdayaverage = yesterdaysSum / 100;
          
           if (price > latestData[0].close) {
             
