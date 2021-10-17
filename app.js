@@ -34,19 +34,19 @@ app.get('/', (req, res) => {
     if (!err) {
       console.log("retrieval successful")
       res.send(db);
-      //  res.status(200).send("creation successful")
+     
     }
     else {
       console.log("retrieval unsuccessful")
       console.log(err)
-      //  res.status(500).send("creation unsuccessful")
+     
     }
   })
 })
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`)
 })
-//run a job every middnight
+
 cron.schedule('0 3 * * 2-6', () => {
   console.log('running a task every 3am');
   func();
@@ -75,28 +75,23 @@ const clearAsyncInterval = (intervalIndex) => {
     asyncIntervals[intervalIndex] = false;
   }
 };
-////////////////////////////////////////////////////////////////////////////////////////////////
+
 var token='';
 let func = async () => {
   var iterator = 0;
   // here we need to remove the extra tickers  okay..let me make the list on excel yes you can give me an excel file same as you gave me before
   let data = ["GHSI", "GSV", "SYN", "TRX", "ACST", "ITP", "PTN", "NAK", "ADXS", "GTE", "ASRT", "NSPR", "TLGT", "BIOL", "CSCW", "GPL", "XPL", "CTRM", "CFMS", "OGEN", "KIQ", "NAKD", "DNN", "INUV", "NAOV", "MUX", "ADMP", "NBY", "TBLT", "URG", "HSTO", "SHIP", "DFFN", "UXIN", "AEZS", "TNXP", "AIKI", "MTNB", "BORR", "RGLS", "ONTX", "INPX", "ZSAN", "PTE", "SNDL", "MKD", "BXRX", "CHEK", "CIDM", "ISR", "ASM", "NOVN", "NVCN", "UAMY", "CEI", "MOTS", "HDSN", "ATIF", "POAI", "DYNT", "TXMD", "PULM", "LKCO", "NEPT", "BRQS", "LPCN", "AVGR", "NGD", "ITRM", "NXTD", "TGB", "NMTR", "GNUS", "CCO", "XSPA", "IBIO", "GSAT", "USWS", "VEON", "CLBS", "GERN", "TMBR", "PHUN", "ESGC", "ZOM", "HEPA", "GTT", "ACRX", "DGLY", "TYME", "JFU", "CTXR", "ATHX", "SINT", "CLSN", "JAGX", "CIG", "UEC", "QD", "LYG", "STRM", "TRVN", "CRBP", "BEST", "REI", "TTOO", "HOFV", "HOTH", "TOPS", "DHY", "METX", "NGL", "ABEO", "VTGN", "TGC", "TRCH", "TTI", "ABEV", "MICT", "NBEV", "LAIX", "VTVT", "EXPR", "CHS", "ATOS", "SESN", "BOXL", "LQDA", "IAG", "NAT", "MARK", "OGI", "INFI", "DHF", "KOS", "TELL", "GNW", "LGHL", "WTRH", "IDEX", "VISL", "LLNW", "WTI", "COMS", "CIK", "XXII", "VBIV", "KXIN", "RRD", "SENS", "AHT", "REPH", "SPPI", "QEP", "AKBA", "RIG", "AUUD", "QTT", "UGP", "NXE", "SAN", "TOUR", "MBIO", "DSS", "CPG", "OPTT", "TRXC", "ABUS", "HMY", "ENLC", "EVFM", "IVR", "MREO", "BRFS", "OBSV", "NOK", "JE", "CDEV", "AUY", "MFA", "SWN", "DPW", "BBD", "RIGL", "NYMT", "PAVM", "BTU", "XTNT", "TRVG", "TEF", "WATT", "BTG", "CRNT", "ETM", "BGCP", "OPK", "ITUB", "SRTS", "GGB", "FLDM", "AQMS", "AIV", "SOS", "ERF", "HLX", "ASMB", "TCDA", "AFI", "EFOI", "UUUU", "AREC", "ZIOP", "JG", "CNDT", "AMRX", "BBVA", "LIXT", "DHT", "LTRPA", "AFMD", "MNKD", "BKD", "SVM", "SIRI", "SID", "GLOG", "EXK", "CLNY", "CBAT", "CLVS", "SAND", "HMHC", "WIT", "WWR", "CERS", "SOLO", "KGC", "VET", "ALTO", "HL", "SBS", "CX", "ENBL", "MGI", "AMRN", "FRSX", "EBON", "HEXO", "KNDI", "AQB", "AGI", "VXRT", "AYRO", "CXW", "GEO", "TWO", "ETRN", "PSEC", "ZIXI", "PTEN", "CVE", "TV", "KALA", "GPRO", "FSM", "UWMC", "ASX", "ADT", "ET", "COTY", "MOGO", "GEL", "PBR", "ENDP", "AMC", "UAVS", "GFI", "FTI", "MBT", "EQX", "WIMI", "SILV", "NLY", "NG", "KOPN", "PAA", "PBI", "PAGP", "KODK", "DVAX", "ERJ", "AM", "BCS", "LOTZ", "AR", "CDE", "IRWD", "PGRE", "CGEN", "WPRT", "CLOV", "KMPH", "NPTN", "RRC", "SRNE", "GEVO", "PVG", "BNGO", "UMC", "INFN", "NNDM", "TWLVU", "CFII", "OR", "MACQU", "BB", "SBEAU", "DRH", "NRZ", "CRDF", "RUBY", "SLAMU", "CRON", "EGO", "PCG", "ACB", "AUVI", "HEC", "TEVA", "BCRX", "SRNGU", "ING", "AACQ", "AMCR", "OCGN", "SHLX", "ALUS", "MRO", "INO", "ZNGA", "SGMO", "NGAC", "CIM", "SDC", "AJAX", "SFTW", "F", "RTP", "EAF", "FNB", "ACIC", "UNIT", "RAAC", "GSAH", "ATNX", "MTG", "NYCB", "BDN", "DB", "FOLD", "LUMN", "RMO", "QRTEA", "GLUU", "ERIC", "GE", "CNX", "FRX", "AMX", "GOEV", "MAC", "CLNE", "SUNW", "SHO", "VG", "CLF", "ISBC", "HIMX", "ROOT", "BTWN", "IPOF", "AMRS", "KPTI", "NPA", "SM", "KAR", "CDXC", "HOL", "AUPH", "NBLX", "XL", "SSRM", "PBF", "APLE", "PRMW", "DOYU", "TWNK", "CS", "HPE", "COMM", "INSG", "VLDR", "SABR", "KMI", "VTRS", "MVIS", "CBD", "GTES", "MIK", "LU", "SY", "RLGY", "NOV", "HYLN", "CAN", "M", "BFT", "HBAN", "MDRX", "UBS", "CCJ", "SKT", "SLM", "MOMO", "GPK", "AGNC", "CLDR", "WKHS", "ACI", "VIAV", "FHN", "MUR", "STLA", "GMBL", "HST", "X", "IBN", "WES", "ABR", "KOSS", "TAK", "GT", "VALE", "FCEL", "DOC", "BPY", "INFY", "FLR", "VOD", "VST", "RLX", "YSG", "HBI", "GHVI", "EQT", "APHA", "PBCT", "AG", "ESI", "NKLA", "FLEX", "UA", "TGNA", "IGT", "KIM", "TROX", "SBSW", "BOX", "IPOE", "JBLU", "COG", "LTHM", "SVMK", "GOLD", "LAC", "CYTK", "VUZI", "EQNR", "BFLY", "HRB", "FEYE", "ORI", "RIDE", "CNP", "NLOK", "WISH", "BRX", "APA", "SU", "EB", "MFC", "AU", "DM", "KEY", "MAT", "OUT", "RDN", "WEN", "PS"];
-// let data = ["GHSI", "GSV", "SYN", "TRX", "ACST", "ITP", "PTN", "NAK", "ADXS", "GTE", "ASRT", "NSPR", "TLGT", "BIOL", "CSCW", "GPL", "XPL", "CTRM", "CFMS", "OGEN", "KIQ", "NAKD", "DNN", "INUV"];
-
-  let d = new Date();
+let d = new Date();
   let todayDate = formatDate(d);
   let oldDate = formatDate(d.setDate(d.getDate() - 3500));
-  // const size = 101
-  // console.log(oldDate.length-size);
   console.log(oldDate + 'oldDate,')
   console.log(todayDate + 'todayDate')
   let increased_tickers = [];
-  // for (const iterator of data) {
+
   var interval = setAsyncInterval(async func2 => {
     var ticker = {};
     try {
-      let response1 = await fetch(
-        //${data[iterator]}
+      let latestResponse = await fetch(
         `https://api.tiingo.com/tiingo/daily///${data[iterator]}/prices?token=${token}`, {
         method: 'GET',
         headers: {
@@ -104,13 +99,13 @@ let func = async () => {
           'Content-Type': 'application/json'
         },
       });
-      let latestData = await response1.json();
+      let latestData = await latestResponse.json();
      if(latestData.detail=='Error: You have run over your monthly bandwidth allocation. Please upgrade at https://api.tiingo.com/pricing to have your limits increased.'){
         token=''
         func();
       }
       if (latestData.length > 0) {
-     let response2 = await fetch(
+     let historicalResponse = await fetch(
           `https://api.tiingo.com/tiingo/daily///${data[iterator]}/prices?startDate=${oldDate}&endDate=${latestData[0].date}&token=${token}`, {
           method: 'GET',
           headers: {
@@ -118,17 +113,17 @@ let func = async () => {
             'Content-Type': 'application/json'
           },
         });
-        let allData = await response2.json();
+        let allData = await historicalResponse.json();
         if (allData.length == 0) {
           console.log('allData have zero length')
         }
         else {
-          var sum1 = 0;
+          var todaysSUM = 0;
          for (i = allData.length - 100; i < allData.length; i++) {
-            sum1 = sum1 + allData[i].close
+            todaysSUM = todaysSUM + allData[i].close
           }
 
-          let price = sum1 / 100;
+          let price = todaysSUM / 100;
           if (allData.length == 0) {
             price = 0;
           }
@@ -137,12 +132,12 @@ let func = async () => {
           for (i = allData.length - 2; i < allData.length - 1; i++) {
     yesterdayclose = allData[i].close
     }
-          var sum2 = 0;
+          var yesterdaysSUM = 0;
           var yesterdayaverage = 0;
           for (i = allData.length - 101; i < allData.length - 1; i++) {
-            sum2 = sum2 + allData[i].close
+            yesterdaysSUM = yesterdaysSUM + allData[i].close
           }
-          yesterdayaverage = sum2 / 100;
+          yesterdayaverage = yesterdaysSUM / 100;
          
           if (price > latestData[0].close) {
             
@@ -239,9 +234,7 @@ let func = async () => {
     });
     }
   }, 23000);
-  // };
  
-  
 }
 func();
 
